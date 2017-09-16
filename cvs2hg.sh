@@ -4,6 +4,7 @@ PATH=/usr/local/src/reposurgeon:$PATH
 
 PROJECT_NAME=$1
 CVS_SERVER=$2
+AUTHOR_MAP_FILE="$PROJECT_NAME.map"
 
 mkdir -p $PROJECT_NAME
 cd $PROJECT_NAME
@@ -24,8 +25,16 @@ CURRENT_CVSSERVER=`awk '$1 == "CVS_HOST" { print $3 }' Makefile`
 sed -i "s/$CURRENT_CVSSERVER/$CVS_SERVER/g" Makefile
 
 make
-make stubmap
-make
+
+if [ -f "$AUTHOR_MAP_FILE" ]
+then
+	echo "$AUTHOR_MAP_FILE found."
+else
+    echo "Authors map file $AUTHOR_MAP_FILE is not found. Generated one."
+    make stubmap
+    make
+fi
+
 
 bash
 
