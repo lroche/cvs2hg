@@ -22,6 +22,22 @@ You can also use a bind mount volume during your run:
 
 So here the mercurial repository will be in ~/hgconversion/a2ps/a2ps-hg directory on host machine.
 
+# Troubleshooting
+
+- Reposurgeon uses rsync to connect on remote server so sometimes you could get some issues with it:  there is a workaround, only if you have access on cvs server files (,v files), you can copy them on host machine in a directory
+named ${project-name}-mirror.
+If your project is a2ps and your workdir is ~/hgconversion/a2ps:
+
+    * create a directory named :
+~/hgconversion/a2ps/a2ps-mirror
+    * place all your files ,v in a directory named ~/hgconversion/a2ps/a2ps-mirror/a2ps
+    * create a empty directory named CVSROOT here:
+    ~/hgconversion/a2ps/a2ps-mirror/CVSROOT
+
+- Encoding issues "<code>utf8 codec can't decode byte 0xe9 in position xx</code>" : the process of conversion expects to have commit logs in utf-8 format only so if you have another encoding format you need to modify all logs of ,v files with utf-8 format.    
+
+
+
 # Author map
 
 - The author map allows to specify a full name and email address for each local user ID in the repo you are converting. The expected name file is ${moduleCVSName}.map
