@@ -34,6 +34,14 @@ If your project is a2ps and your workdir is ~/hgconversion/a2ps:
     * create a empty directory named CVSROOT here:
     ~/hgconversion/a2ps/a2ps-mirror/CVSROOT
 
+You should have in ~/hgconversion/a2ps/ this structure now:
+```
+├── a2ps-mirror
+│   ├── CVSROOT
+│   └── a2ps
+└── a2ps.map
+```
+
 - Encoding issues "<code>utf8 codec can't decode byte 0xe9 in position xx</code>" : the process of conversion expects to have commit logs in utf-8 format only so if you have another encoding format you need to modify all logs of ,v files with utf-8 format.    
 
 
